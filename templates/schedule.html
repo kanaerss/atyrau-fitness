@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание - Atyrau Fitness</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">ATYRAU FITNESS</div>
+        <nav>
+            <ul>
+                <li><a href="/">Назад на главную</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="schedule-page">
+            <h2>Расписание тренировок</h2>
+            <div class="table-wrapper">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Время</th>
+                            <th>Пн / Ср / Пт</th>
+                            <th>Вт / Чт / Сб</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>09:00 - 10:00</td>
+                            <td><span class="class-tag crossfit">Crossfit Strong</span></td>
+                            <td><span class="class-tag yoga">Hatha Yoga</span></td>
+                        </tr>
+                        <tr>
+                            <td>11:00 - 12:00</td>
+                            <td><span class="class-tag stretch">Растяжка</span></td>
+                            <td><span class="class-tag boxing">Boxing Intro</span></td>
+                        </tr>
+                        <tr>
+                            <td>18:30 - 19:30</td>
+                            <td><span class="class-tag boxing">Тайский бокс</span></td>
+                            <td><span class="class-tag crossfit">Power Lift</span></td>
+                        </tr>
+                        <tr>
+                            <td>20:00 - 21:00</td>
+                            <td><span class="class-tag yoga">Yoga Relax</span></td>
+                            <td><span class="class-tag stretch">Deep Stretch</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Atyrau Fitness. Все права защищены.</p>
+    </footer>
+</body>
+</html>

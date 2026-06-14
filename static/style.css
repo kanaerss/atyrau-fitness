@@ -1,0 +1,215 @@
+/* 1. ПЕРЕМЕННЫЕ (ЦВЕТОВАЯ ПАЛИТРА) */
+/* Это как палитра художника. Мы один раз задаем цвета, чтобы потом не писать их вручную каждый раз. */
+:root {
+    --bg-color: #f9f9f9;       /* Основной цвет фона сайта (светло-серый) */
+    --text-color: #333;        /* Основной цвет текста (темно-серый, почти черный) */
+    --card-bg: #fff;           /* Цвет фона для карточек тренеров и отзывов (белый) */
+    --accent-color: #ffcc00;   /* Наш фирменный желтый/золотой цвет (для кнопок и выделений) */
+    --header-bg: #1a1a1a;      /* Цвет шапки и подвала (темный) */
+}
+
+/* Настройки цветов для ТЁМНОЙ ТЕМЫ. 
+   Когда скрипт JavaScript включает темную тему, сайт начинает брать цвета отсюда. */
+[data-theme="dark"] {
+    --bg-color: #121212;       /* Очень темный фон сайта */
+    --text-color: #e0e0e0;     /* Светло-серый текст (чтобы было видно на черном) */
+    --card-bg: #1e1e1e;        /* Темно-серые карточки */
+}
+
+
+/* 2. БАЗОВЫЕ СТИЛИ (ДЛЯ ВСЕГО САЙТА) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Красивый современный шрифт */
+    margin: 0;                 /* Убираем стандартные отступы браузера по краям экрана */
+    padding: 0;
+    color: var(--text-color);  /* Берем цвет текста из нашей палитры */     
+    background-color: var(--bg-color); /* Берем цвет фона из палитры */
+    transition: 0.3s;          /* ПЛАВНОСТЬ: когда меняется тема, цвета перетекают плавно за 0.3 секунды */            
+}
+
+/* ШАПКА САЙТА (МЕНЮ) */
+header {
+    background-color: var(--header-bg);
+    color: #fff;
+    padding: 20px 50px;
+    display: flex;             /* Включаем гибкую сетку (элементы встают в один ряд) */
+    justify-content: space-between; /* Расталкиваем Логотип налево, а Меню направо */
+    align-items: center;       /* Выравниваем их ровно по центру по вертикали */
+    position: sticky;          /* ЛИПКАЯ ШАПКА: при прокрутке сайта вниз она всегда остается наверху */
+    top: 0;
+    z-index: 1000;             /* Шапка всегда поверх других элементов (картинок, текста) */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent-color); /* Фирменный желтый цвет для названия */
+}
+
+/* СПИСОК ССЫЛОК В МЕНЮ */
+nav ul {
+    list-style: none;          /* Убираем стандартные точки у списка */
+    display: flex;             /* Выстраиваем ссылки в один горизонтальный ряд */
+    margin: 0;
+    align-items: center;
+}
+
+nav ul li { margin-left: 20px; } /* Делаем расстояние между кнопками в меню */
+
+nav ul li a {
+    color: #fff;               /* Белый текст ссылок */
+    text-decoration: none;     /* Убираем подчеркивание у ссылок */
+    transition: 0.3s;          /* Плавное изменение цвета при наведении */
+}
+
+nav ul li a:hover { color: var(--accent-color); } /* :hover — это эффект, когда наводишь мышку на ссылку (она желтеет) */
+
+
+/* --- НОВЫЙ СТИЛЬНЫЙ HERO (ГЛАВНЫЙ ЭКРАН С ФОТО) --- */
+#hero {
+    height: 80vh;              /* Блок занимает 80% высоты экрана твоего устройства */
+    /* linear-gradient делает черное полупрозрачное затемнение (0.6) поверх картинки, чтобы белый текст легко читался */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop') no-repeat center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;   /* Ставим текст ровно по центру экрана */
+    text-align: center;
+    color: white;
+    padding: 0 5%;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;         /* Огромный размер для главного заголовка */
+    font-weight: 800;          /* Очень жирный шрифт */
+    text-transform: uppercase; /* ВСЕ БУКВЫ ЗАГЛАВНЫЕ */
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.hero-content h1 span {
+    color: var(--accent-color); /* Слово "в Атырау" выделено желтым */
+}
+
+/* КНОПКА В HERO ("Начать путь") */
+.btn-primary {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--accent-color);
+    color: #1a1a1a;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 50px;       /* Сильно закругляем края (получается овал) */
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);    /* При наведении мышки кнопка чуть-чуть увеличивается (эффект пульсации) */
+    background-color: #fff;    /* И становится белой */
+    box-shadow: 0 10px 20px rgba(255, 204, 0, 0.3); /* Появляется желтое свечение вокруг */
+}
+
+/* ОТСТУПЫ ДЛЯ ВСЕХ СЕКЦИЙ (Тренеры, Отзывы и т.д.) */
+section { padding: 60px 10%; }
+
+/* КАРТОЧКИ ТРЕНЕРОВ */
+.cards-container {
+    display: flex;
+    gap: 20px;                 /* Расстояние между карточками тренеров */
+    justify-content: center;
+    flex-wrap: wrap;           /* УМНЫЙ ПЕРЕНОС: если экран телефона узкий, карточки перепрыгнут друг под друга */
+}
+
+.card {
+    background: var(--card-bg); /* Берем цвет карточки из палитры (меняется при темной теме) */
+    color: var(--text-color);
+    border-radius: 10px;       /* Закругляем углы карточки */
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Легкая тень для объема */
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover { transform: translateY(-5px); } /* При наведении карточка тренера чуть-чуть "подпрыгивает" вверх */
+
+.trainer-photo {
+    width: 100%;               /* Фото занимает всю ширину карточки */
+    height: 250px;
+    object-fit: cover;         /* Фото красиво обрезается, не сплющиваясь */
+    border-radius: 8px 8px 0 0;/* Закругляем только верхние углы у фото */
+}
+
+/* ТАБЛИЦА РАСПИСАНИЯ */
+.table-wrapper { overflow-x: auto; margin: 20px 0; } /* Если таблица не влезает в телефон, появится горизонтальная прокрутка (чтобы сайт не ломался) */
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Убираем двойные рамки между ячейками */
+    background: var(--card-bg); 
+    color: var(--text-color);
+}
+
+th, td {
+    border: 1px solid rgba(128, 128, 128, 0.2); /* Тонкая серая граница у каждой клетки */
+    padding: 15px;
+    text-align: center;
+}
+
+/* ЦВЕТНЫЕ ТЕГИ В РАСПИСАНИИ (Таблички "Йога", "Кроссфит") */
+.class-tag {
+    display: inline-block;
+    min-width: 120px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Присваиваем каждой тренировке свой красивый цвет */
+.yoga { background-color: #8e44ad; }    /* Фиолетовый */
+.crossfit { background-color: #c0392b; } /* Красный */
+.boxing { background-color: #2c3e50; }   /* Темно-синий */
+.stretch { background-color: #27ae60; }  /* Зеленый */
+
+/* ФОРМА И КНОПКИ */
+input { 
+    padding: 12px; 
+    border-radius: 5px; 
+    border: 1px solid #ddd; 
+}
+
+button {
+    padding: 12px;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;           /* Курсор превращается в "пальчик" при наведении на кнопку */
+    transition: 0.3s;
+}
+
+/* КНОПКА WHATSAPP В УГЛУ */
+.whatsapp-button {
+    position: fixed;           /* Кнопка "прибита" к экрану и не двигается при прокрутке */
+    bottom: 20px;              /* Отступ снизу */
+    right: 20px;               /* Отступ справа */
+    background-color: #25d366; /* Фирменный зеленый цвет WhatsApp */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    z-index: 1000;             /* Поверх всего сайта */
+}
+
+/* МЕДИАЗАПРОС: АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ */
+/* Правила внутри этого блока сработают ТОЛЬКО если ширина экрана меньше 600 пикселей (смартфоны) */
+@media (max-width: 600px) {
+    .whatsapp-button span { display: none; } /* Прячем текст "Написать нам", чтобы кнопка не занимала пол-экрана */
+    .whatsapp-button { padding: 15px; border-radius: 50%; } /* Делаем кнопку просто круглым значком */
+}

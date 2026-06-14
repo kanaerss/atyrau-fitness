@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atyrau Fitness - Твой путь к силе</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <div class="logo">ATYRAU FITNESS</div>
+        <nav>
+            <ul>
+                <li><a href="#trainers">Тренеры</a></li>
+                <li><a href="/schedule">Расписание</a></li> <li><a href="#bmi">Калькулятор</a></li>
+                <li><a href="#contacts">Запись</a></li>
+                <li><button id="theme-toggle" class="theme-btn">Тёмная тема</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Стань лучшей версией себя <span>в Атырау</span></h1>
+                <p>Профессиональные тренировки и современное оборудование для твоего результата</p>
+                <a href="#contacts" class="btn-primary">Начать путь</a>
+            </div>
+        </section>
+
+        <section id="trainers">
+            <h2>Наши Тренеры</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/trainer1.jpg') }}" alt="Дамир" class="trainer-photo">
+                    <h3>Дамир</h3>
+                    <p>Эксперт по кроссфиту. Стаж 10 лет.</p>
+                </div>
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/trainer2.jpg') }}" alt="Екатерина" class="trainer-photo">
+                    <h3>Екатерина</h3>
+                    <p>Инструктор по йоге и растяжке.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews">
+            <h2>Отзывы наших атлетов</h2>
+            <div class="reviews-container">
+                <div class="review-card">
+                    <p>"Лучший зал в Атырау! Тренеры всегда помогут, атмосфера очень мотивирующая."</p>
+                    <span>— Арман</span>
+                </div>
+                <div class="review-card">
+                    <p>"Пришла на йогу к Екатерине и осталась навсегда. Очень уютно и чисто."</p>
+                    <span>— Сабина</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="bmi">
+            <h2>Рассчитай свой ИМТ</h2>
+            <div class="bmi-box">
+                <input type="number" id="weight" placeholder="Вес (кг)">
+                <input type="number" id="height" placeholder="Рост (см)">
+                <button type="button" onclick="calculateBMI()">Узнать результат</button>
+                <p id="bmiResult"></p>
+            </div>
+        </section>
+
+        <section id="contacts">
+            <h2>Записаться на тренировку</h2>
+            <form id="orderForm" action="/book" method="POST">
+                <input type="text" name="name" placeholder="Ваше имя" required>
+                <input type="tel" name="phone" placeholder="Ваш телефон" required>
+                <button type="submit">Жду звонка</button>
+            </form>
+        </section>
+    </main>
+
+    <a href="https://wa.me/77070000000" class="whatsapp-button" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        <span>Написать нам</span>
+    </a>
+
+    <footer>
+        <p>&copy; 2026 Atyrau Fitness. Все права защищены.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
